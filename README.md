@@ -1,4 +1,5 @@
-# BEDU: Data Science 3 (_Santander Universidades_)
+# BEDU: Data Science 3
+# (_Santander Universidades_)
 ## Bloque 2: Estadística y Programación con R
 
 
