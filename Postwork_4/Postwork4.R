@@ -7,7 +7,7 @@ u1718<- "https://www.football-data.co.uk/mmz4281/1718/SP1.csv"
 u1819<- "https://www.football-data.co.uk/mmz4281/1819/SP1.csv"
 u1920<- "https://www.football-data.co.uk/mmz4281/1920/SP1.csv"
 
-setwd("C:/Users/giles/Documents/DataScience-BEDU/FASE2/BLOQUE2/SESIÓN3")
+setwd("C:/Users/giles/Documents/DataScience-BEDU/FASE2/BLOQUE2/SESIÓN4")
 
 download.file(url = u1718, destfile = "SP1-1718.csv", mode = "wb")
 download.file(url = u1819, destfile = "SP1-1819.csv", mode = "wb")
