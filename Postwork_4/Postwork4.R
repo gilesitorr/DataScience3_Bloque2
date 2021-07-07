@@ -36,9 +36,9 @@ df.1920 <- mutate(df.1920, Date=as.Date(Date,"%d/%m/%Y"))
 #Se forma un único dataframe con datos desde 2017 hasta 2020
 df.1720 <- rbind(df.1718, df.1819, df.1920)
 
-################################
-# Aquí empezamos el Postwork 3 #
-################################
+######################################
+# Aquí empezamos lo de este Postwork #
+######################################
 
 str(df.1720) #La dataframe con la que empezaremos
 
@@ -73,16 +73,16 @@ GolesLocalVisit <- GolesLocalVisit/JJG
 GolesLocalVisit
 
 ###################################################################
-
+length(P_Visit_G[,2])
 
 #A continuación, se graficará
 library(ggplot2)
-df.Paway<- data.frame(goles=0:(length(P_visit_G)-1), probabilidad=P_visit_G); str(df.Paway) #Visitante
-df.Phome<- data.frame(goles=0:(length(P_Local_G)-1), probabilidad=P_Local_G); str(df.Phome) #Local
+df.Paway<- data.frame(goles=0:(length(P_Visit_G[,2])-1), probabilidad=P_Visit_G); str(df.Paway) #Visitante
+df.Phome<- data.frame(goles=0:(length(P_Local_G[,2])-1), probabilidad=P_Local_G); str(df.Phome) #Local
 df.Pconj<- as.data.frame(GolesLocalVisit); str(df.Pconj) #Conjunta
 
 #Gráfica de barras para las probabilidades marginales del equipo visitante
-ggplot(df.Paway, aes(x = goles, y = probabilidad)) +
+ggplot(df.Paway, aes(x = goles, y = probabilidad.Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
   ggtitle("Probabilidad de que el visitante haga goles") +
   ylab("Probabilidad") +
@@ -90,7 +90,7 @@ ggplot(df.Paway, aes(x = goles, y = probabilidad)) +
   theme_light()
 
 #Gráfica de barras para las probabilidades marginales del local
-ggplot(df.Phome, aes(x = goles, y = probabilidad)) +
+ggplot(df.Phome, aes(x = goles, y = probabilidad.Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
   ggtitle("Probabilidad de que el local haga goles") +
   ylab("Probabilidad") +
@@ -103,6 +103,7 @@ ggplot(df.Pconj, aes(x = G.Local, y = G.Visit, fill = Freq)) +
   ggtitle("Probabilidad conjunta de los goles") +
   labs(x="Goles del local",y="Goles del visitante",fill='Probabilidad') +
   theme_light()
+
 
 ############################################################
 #                   POSTWORK 04                            #
@@ -119,15 +120,15 @@ ggplot(df.Pconj, aes(x = G.Local, y = G.Visit, fill = Freq)) +
 # estas probabilidades conjuntas por el producto de las probabilidades 
 # marginales correspondientes.
 
-Cocientes<-matrix(0,nrow=nrow(ProbConjunta),ncol=ncol(ProbConjunta))
+Cocientes<-matrix(0,nrow=nrow(df.Pconj),ncol=ncol(df.Pconj))
 
-for (i in 1:nrow(ProbConjunta)) {
-  VarLocal<-as.numeric(as.character(ProbConjunta[i,1]))
-  VarVisit<-as.numeric(as.character(ProbConjunta[i,2]))
-  Crit<-(subset(ProbConjunta, G.Local==VarLocal & G.Visit==VarVisit, 
-                          select = 'Probabilidad'))
-  Crit<-Crit/(subset(ProbMargLocal, G.Local==VarLocal, select=Probabilidad))
-  Crit<-Crit/(subset(ProbMargVisit, G.Visit==VarVisit, select=Probabilidad))
+for (i in 1:nrow(df.Pconj)) {
+  VarLocal<-as.numeric(as.character(df.Pconj[i,1]))
+  VarVisit<-as.numeric(as.character(df.Pconj[i,2]))
+  Crit<-subset(df.Pconj, (G.Local==VarLocal & G.Visit==VarVisit), 
+                select = 'Freq')
+  Crit<-Crit/(subset(df.Phome, goles==VarLocal, select=probabilidad.Probabilidad))
+  Crit<-Crit/(subset(df.Paway, goles==VarVisit, select=probabilidad.Probabilidad))
   Cocientes[i,1]<-VarLocal 
   Cocientes[i,2]<-VarVisit 
   Cocientes[i,3]<-as.numeric(as.character(Crit)) 
@@ -144,15 +145,15 @@ Cocientes<-data.frame(Cocientes)
 
 MediaCocientes<-mean(Cocientes[,ncol(Cocientes)])
 SdCocientes<-sd(Cocientes[,ncol(Cocientes)])
-Bootsmap<-data.frame(rnorm(nrow(Cocientes), mean=MediaCocientes, sd=SdCocientes))
+Bootstrap<-data.frame(rnorm(nrow(Cocientes), mean=MediaCocientes, sd=SdCocientes))
 for (i in 1:100) {
   Compuesto<-rnorm(nrow(Cocientes), mean=MediaCocientes, sd=SdCocientes)
-  Bootsmap<-cbind(Bootsmap,Compuesto)
+  Bootstrap<-cbind(Bootstrap,Compuesto)
 }
 
-Bootsmap<-apply(Bootsmap,2,sort)
-MediasBM<-apply(Bootsmap,2,mean)
-SDBM<-apply(Bootsmap,1,sd)
+Bootstrap<-apply(Bootstrap,2,sort)
+MediasBM<-apply(Bootstrap,2,mean)
+SDBM<-apply(Bootstrap,1,sd)
 
 z<-(1-Cocientes[,ncol(Cocientes)])/(SDBM/10)
 z0.025<- qnorm(p=0.025, lower.tail = FALSE)
@@ -161,5 +162,6 @@ Resultz<- (z>-z0.025) & (z<z0.025)
 Marcadores<-Cocientes[Resultz,1:3]
 names(Marcadores)<-c('G.Local','G.Visit', 'Cociente')
 
-print('Los marcadores para los cuales se puede afirmar independiencia entre las variables aleatorias son: ')
+print("Los marcadores para los cuales se puede afirmar independiencia entre las variables aleatorias son:")
+print("(Con un 95% de confianza)")
 print(Marcadores)
