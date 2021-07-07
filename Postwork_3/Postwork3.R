@@ -73,16 +73,16 @@ GolesLocalVisit <- GolesLocalVisit/JJG
 GolesLocalVisit
 
 ###################################################################
-
+length(P_Visit_G[,2])
 
 #A continuación, se graficará
 library(ggplot2)
-df.Paway<- data.frame(goles=0:(length(P_visit_G)-1), probabilidad=P_visit_G); str(df.Paway) #Visitante
-df.Phome<- data.frame(goles=0:(length(P_Local_G)-1), probabilidad=P_Local_G); str(df.Phome) #Local
+df.Paway<- data.frame(goles=0:(length(P_Visit_G[,2])-1), probabilidad=P_Visit_G); str(df.Paway) #Visitante
+df.Phome<- data.frame(goles=0:(length(P_Local_G[,2])-1), probabilidad=P_Local_G); str(df.Phome) #Local
 df.Pconj<- as.data.frame(GolesLocalVisit); str(df.Pconj) #Conjunta
 
 #Gráfica de barras para las probabilidades marginales del equipo visitante
-ggplot(df.Paway, aes(x = goles, y = probabilidad)) +
+ggplot(df.Paway, aes(x = goles, y = probabilidad.Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
   ggtitle("Probabilidad de que el visitante haga goles") +
   ylab("Probabilidad") +
@@ -90,7 +90,7 @@ ggplot(df.Paway, aes(x = goles, y = probabilidad)) +
   theme_light()
 
 #Gráfica de barras para las probabilidades marginales del local
-ggplot(df.Phome, aes(x = goles, y = probabilidad)) +
+ggplot(df.Phome, aes(x = goles, y = probabilidad.Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
   ggtitle("Probabilidad de que el local haga goles") +
   ylab("Probabilidad") +
@@ -98,8 +98,9 @@ ggplot(df.Phome, aes(x = goles, y = probabilidad)) +
   theme_light()
 
 #HeatMap para las probabilidades conjuntas
-ggplot(df.Pconj, aes(x = FTHG, y = FTAG, fill = Freq)) +
+ggplot(df.Pconj, aes(x = G.Local, y = G.Visit, fill = Freq)) +
   geom_tile() +
   ggtitle("Probabilidad conjunta de los goles") +
   labs(x="Goles del local",y="Goles del visitante",fill='Probabilidad') +
   theme_light()
+
