@@ -1,40 +1,54 @@
-#Se lee la base de datos directos de los enlaces
-u1718<- "https://www.football-data.co.uk/mmz4281/1718/SP1.csv"
-u1819<- "https://www.football-data.co.uk/mmz4281/1819/SP1.csv"
-u1920<- "https://www.football-data.co.uk/mmz4281/1920/SP1.csv"
+############################################################
+#                   POSTWORK 02                            #
+############################################################
 
-setwd("C:/Users/giles/Documents/DataScience-BEDU/FASE2/BLOQUE2/SESIÓN2")
+# Ahora vamos a generar un cúmulo de datos mayor al que se 
+# tenía, ésta es una situación habitual que se puede presentar 
+# para complementar un análisis, siempre es importante estar 
+# revisando las características o tipos de datos que tenemos, 
+# por si es necesario realizar alguna transformación en las 
+# variables y poder hacer operaciones aritméticas si es el 
+# caso. Además de sólo tener presente algunas de las variables, 
+# no siempre se requiere el uso de todas para ciertos procesamientos.
 
-download.file(url = u1718, destfile = "SP1-1718.csv", mode = "wb")
-download.file(url = u1819, destfile = "SP1-1819.csv", mode = "wb")
-download.file(url = u1920, destfile = "SP1-1920.csv", mode = "wb")
+# Importa los datos de soccer de las temporadas 2017/2018, 
+# 2018/2019 y 2019/2020 de la primera división de la liga 
+# española a R, los datos los puedes encontrar en el siguiente 
+# enlace: https://www.football-data.co.uk/spainm.php
 
-df.1718<- read.csv("SP1-1718.csv")
-df.1819<- read.csv("SP1-1819.csv")
-df.1920<- read.csv("SP1-1920.csv")
-
-#Se consultan las características de las bases de datos
-str(df.1718); head(df.1718); View(df.1718); summary(df.1718)
-str(df.1819); head(df.1819); View(df.1819); summary(df.1819)
-str(df.1920); head(df.1920); View(df.1920); summary(df.1920)
-
-#Se usa <select> de <dplyr> para seleccionar sólo algunas columnas
-library(dplyr)
-df.1718 <- select(df.1718, Date:FTR)
-df.1819 <- select(df.1819, Date:FTR)
-df.1920 <- select(df.1920, Date, HomeTeam:FTR)
-
-#Arreglamos los formatos de las fechas para tener uno unificado dd-mm-YYYY
 library(stringr)
-df.1718 <- mutate(df.1718, Date=as.Date(Date,"%d/%m/%Y"))
-df.1718$Date <- format(df.1718$Date, "%d/%m/%Y")
-df.1718$Date<- str_replace(df.1718$Date, "00", "20")
+library(dplyr)
 
-df.1718 <- mutate(df.1718, Date=as.Date(Date,"%d/%m/%Y"))
-df.1819 <- mutate(df.1819, Date=as.Date(Date,"%d/%m/%Y"))
-df.1920 <- mutate(df.1920, Date=as.Date(Date,"%d/%m/%Y"))
+setwd("C:/Users/Usuario/Documents/R/Bedu/Gil/Gil2/DataScience3_Bloque2/Postwork_2")
+temporadas<-c("SP1_1718.csv","SP1_1819.csv","SP1_1920.csv")
 
-#Se forma un único dataframe con datos desde 2017 hasta 2020
-df.1720 <- rbind(df.1718, df.1819, df.1920)
-summary(df.1720)
-View(df.1720)
+TemporadasUnidas<-lapply(temporadas, read.csv)
+
+# Revisa la estructura de de los data frames al usar las 
+# funciones: str, head, View y summary
+summary(TemporadasUnidas)
+lapply(TemporadasUnidas,str)
+lapply(TemporadasUnidas,head)
+lapply(TemporadasUnidas,View)
+lapply(TemporadasUnidas,summary)
+
+# Con la función select del paquete dplyr selecciona 
+# únicamente las columnas Date, HomeTeam, AwayTeam, FTHG, 
+# FTAG y FTR; esto para cada uno de los data frames. 
+# (Hint: también puedes usar lapply).
+
+NewTemUn<-lapply(TemporadasUnidas,function(x){select(x,c('Date',
+                      'HomeTeam', 'AwayTeam','FTHG','FTAG','FTR'))})
+
+NewTemUn<-lapply(NewTemUn,function(x){mutate(x,Date=as.Date(Date, "%d/%m/%Y"))})
+
+TemUn<-do.call(rbind,NewTemUn)
+
+TemUn$Date<-as.Date(str_replace(TemUn$Date,'00','20'))
+
+# Asegúrate de que los elementos de las columnas 
+# correspondientes de los nuevos data frames sean del mismo 
+# tipo (Hint 1: usa as.Date y mutate para arreglar las fechas).
+# Con ayuda de la función rbind forma un único data frame que 
+# contenga las seis columnas mencionadas en el punto 3 
+# (Hint 2: la función do.call podría ser utilizada).
