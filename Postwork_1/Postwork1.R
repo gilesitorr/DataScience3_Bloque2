@@ -53,4 +53,5 @@ GolesLocalVisit<-data.frame(GolesLocal,GolesVisitante)
 names(GolesLocalVisit) <- c("G.Local", "G.Visit")
 GolesLocalVisit <- table(GolesLocalVisit)
 GolesLocalVisit <- GolesLocalVisit/JJG
+print('Hola mundo')
 GolesLocalVisit
