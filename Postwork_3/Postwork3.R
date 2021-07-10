@@ -48,7 +48,7 @@ ProbConjunta
 ProbConjunta<-data.frame(ProbConjunta)
 names(ProbConjunta)<-c('G.Local', 'G.Visit', 'Probabilidad')
 
-write.csv(ProbConjunta,file='ResultadoPostwork03')
+write.csv(ProbConjunta,file='ResultadoPostwork03.csv')
 
 # Realiza lo siguiente:
 
