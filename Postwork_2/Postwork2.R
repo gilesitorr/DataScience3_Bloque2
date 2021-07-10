@@ -46,6 +46,8 @@ TemUn<-do.call(rbind,NewTemUn)
 
 TemUn$Date<-as.Date(str_replace(TemUn$Date,'00','20'))
 
+write.csv(TemUn, file='ResultadoPostwork02.csv')
+
 # Asegúrate de que los elementos de las columnas correspondientes de los nuevos 
 # data frames sean del mismo tipo (Hint 1: usa as.Date y mutate para arreglar 
 # las fechas).Con ayuda de la función rbind forma un único data frame que 
