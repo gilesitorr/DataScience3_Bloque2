@@ -1,6 +1,6 @@
-############################################################
-#                   POSTWORK 05                            #
-############################################################
+################################################################################
+#                                  POSTWORK 05                                 #
+################################################################################
 
 # A partir del conjunto de datos de soccer de la liga española de las 
 # temporadas 2017/2018, 2018/2019 y 2019/2020, crea el data frame SmallData, 
@@ -17,9 +17,11 @@ library(fbRanks)
 Files<-c("SP1_1718.csv","SP1_1819.csv","SP1_1920.csv")
 SmallData<-lapply(Files,read.csv)
 SmallData<-lapply(SmallData,function(x){select(x,c('Date',
-                                               'HomeTeam','FTHG','AwayTeam','FTAG'))})
+                                      'HomeTeam','FTHG','AwayTeam','FTAG'))})
 
-SmallData<-lapply(SmallData,function(x){mutate(x,Date=as.Date(Date, "%d/%m/%Y"))})
+SmallData<-lapply(SmallData,function(x){
+  mutate(x,Date=as.Date(Date, "%d/%m/%Y"))})
+
 SmallData<-do.call(rbind,SmallData)
 
 NM<-c('date', 'home.team', 'home.score', 'away.team','away.score')
@@ -33,7 +35,8 @@ write.csv(SmallData,'Soccer.csv', row.names=F)
 # data frames listos para la función rank.teams. Asigna estos data frames a 
 # variables llamadas anotaciones y equipos.
 
-ListaSoccer<-create.fbRanks.dataframes(scores.file='Soccer.csv', date.format= '%Y-%m-%d')
+ListaSoccer<-create.fbRanks.dataframes(scores.file='Soccer.csv', 
+                                       date.format= '%Y-%m-%d')
 str(ListaSoccer)
 Anotaciones<-ListaSoccer$scores
 Equipos<-ListaSoccer$teams
