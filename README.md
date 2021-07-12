@@ -13,24 +13,16 @@ El equipo de colaboradores en este trabajo está compuesto por:
 - __Rosado Martínez__, Ana Elizabeth
 
 
-
 ### Descripción
-En este repositorio se encuentran __todos los postworks__ del __Bloque 2__ (_Estadística y Programación en R_) del curso de __Data Science__ de _BEDU_ en su tercera edición para _Santander Universidades_.
+En este repositorio se encuentran los resultados y todos los desarrollos del proyecto (__todos los postworks__) del __Bloque 2__ (_Estadística y Programación en R_) del curso de __Data Science__ de _BEDU_ en su tercera edición para _Santander Universidades_.
 
-### Dashboard
-El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
+### Resultados del proyecto
+- El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
+- El __video explicativo__ del proyecto:
+- La __presentación__ mostrada en el video: 
+- El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj. (O también se puede consultar el pdf del reporte: )
 
-### Video del proyecto
-El __video explicativo__ del proyecto:
-
-La __presentación__ mostrada en el video: 
-
-### Reporte del proyecto
-El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj
-
-(O también se puede consultar el pdf del reporte: )
-
-### Postworks
+### Desarrollo del proyecto (Postworks)
 A continuación, se encuentran todos los postworks en orden:
  - [`Postwork 1:` Introducción a R y Software ](Postwork_1/Readme.md) 
  - [`Postwork 2:` Programación y manipulación de datos en R ](Postwork_2/Readme.md) 
