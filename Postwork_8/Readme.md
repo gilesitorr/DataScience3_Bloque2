@@ -1,6 +1,10 @@
 # Postwork 8
 ## (Obtenido del [repositorio usado en la Sesión 8](https://github.com/beduExpert/Programacion-R-Santander-2021/tree/main/Sesion-08/Postwork))
 
+### Dashboard
+El __dashboard__ resultante: https://gilesitorr.shinyapps.io/Postwork8/
+
+### Objetivos
 Los objetivos de este postwork son los siguientes:
 
 1. Ejecutar el código `momios.R` y almacenar los gráficos resultantes en formato `png`
