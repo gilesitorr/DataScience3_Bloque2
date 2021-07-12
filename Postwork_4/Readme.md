@@ -2,7 +2,7 @@
 ## (Obtenido del [repositorio usado en la Sesión 4](https://github.com/beduExpert/Programacion-R-Santander-2021/tree/main/Sesion-04/Postwork))
 
 ### Reporte de la mitad del proyecto
-[El __reporte__ de los postworks 1 a 4](Postwork_4/Equipo2_Postworks1-4.pdf)
+[El __reporte__ de los postworks 1 a 4](https://github.com/gilesitorr/DataScience3_Bloque2/blob/8ae8d66e0b32ea167ed1f1da995ca577b0fe472e/Postwork_4/Equipo%202_%20Postworks%201-4.pdf)
 
 ### Objetivos
 Los objetivos de este postwork son los siguientes:
