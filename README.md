@@ -17,7 +17,15 @@ El equipo de colaboradores en este trabajo está compuesto por:
 ### Descripción
 En este repositorio se encuentran __todos los postworks__ del __Bloque 2__ (_Estadística y Programación en R_) del curso de __Data Science__ de _BEDU_ en su tercera edición para _Santander Universidades_.
 
+### Dashboard
+El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
 
+### Video del proyecto
+El __video explicativo__ del proyecto:
+
+### Reporte del proyecto
+El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj
+(O también se puede consultar el pdf del reporte: )
 
 ### Postworks
 A continuación, se encuentran todos los postworks en orden:
