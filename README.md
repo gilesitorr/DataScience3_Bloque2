@@ -22,10 +22,12 @@ El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
 
 ### Video del proyecto
 El __video explicativo__ del proyecto:
+
 La __presentación__ mostrada en el video: 
 
 ### Reporte del proyecto
 El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj
+
 (O también se puede consultar el pdf del reporte: )
 
 ### Postworks
