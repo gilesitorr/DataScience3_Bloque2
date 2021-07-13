@@ -13,8 +13,8 @@
 # goles (x=0,1,2,)
 
 library(ggplot2)
-
-TemUn<-read.csv("ResultadoPostwork02.csv", header=T)
+Postwork02='https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_3/ResultadoPostwork02.csv'
+TemUn<-read.csv(Postwork02, header=T)
 
 ProbMargLocal<-data.frame(table(data.frame(TemUn$FTHG))/(nrow(TemUn)))
 names(ProbMargLocal)<-c('G.Local','Probabilidad')
@@ -57,9 +57,9 @@ write.csv(ProbConjunta,file='ResultadoPostwork03.csv')
 
 ggplot(ProbMargLocal, aes(x = G.Local, y = Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
-  ggtitle("Probabilidad de que el visitante haga goles") +
+  ggtitle("Probabilidad de que el local haga goles") +
   ylab("Probabilidad") +
-  xlab("Goles hechos") +
+  xlab("Goles") +
   theme_light()
 
 # Un gráfico de barras para las probabilidades marginales estimadas del número 
@@ -69,7 +69,7 @@ ggplot(ProbMargVisit, aes(x = G.Visit, y = Probabilidad)) +
   geom_bar(stat="identity", col="black", fill="Pale green") +
   ggtitle("Probabilidad de que el visitante haga goles") +
   ylab("Probabilidad") +
-  xlab("Goles hechos") +
+  xlab("Goles") +
   theme_light()
 
 # Un HeatMap para las probabilidades conjuntas estimadas de los números de goles 
