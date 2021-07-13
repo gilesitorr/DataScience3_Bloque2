@@ -17,10 +17,9 @@
 library(stringr)
 library(dplyr)
 
-setwd(
-  "C:/Users/Usuario/Documents/R/Bedu/Gil/Gil2/DataScience3_Bloque2/Postwork_2")
-
-temporadas<-c("SP1_1718.csv","SP1_1819.csv","SP1_1920.csv")
+temporadas<-c('https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1718.csv',
+              'https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1819.csv',
+              'https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1920.csv')
 
 TemporadasUnidas<-lapply(temporadas, read.csv)
 
