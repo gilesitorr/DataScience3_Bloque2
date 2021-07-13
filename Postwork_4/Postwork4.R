@@ -16,7 +16,8 @@
 library(dplyr)
 
 # Variables del postwork anterior
-ProbConjunta<-read.csv("ResultadoPostwork03.csv", header=T)
+Postwork03<-'https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_4/ResultadoPostwork03.csv'
+ProbConjunta<-read.csv(Postwork03, header=T)
 ProbConjunta$X<-NULL
 
 ProbMargLocal<- ProbConjunta %>% group_by(G.Local) %>% summarise(
