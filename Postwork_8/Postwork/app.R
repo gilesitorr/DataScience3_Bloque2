@@ -2,18 +2,17 @@ library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(rsconnect)
-
+library(ggplot2)
+library(plotly)
+library(graphics)
 
 # Se lee la base de datos
-matches <- read.csv("data/match.data.csv")
-
-#Se reorganiza la base para poder hacer un facet_wrap fácil
-goals.L <- data.frame(Tipo="Local",Goles=matches$home.score)
-goals.V <- data.frame(Tipo="Visitante",Goles=matches$away.score)
-goals <- rbind(goals.L,goals.V)
+matches <- read.csv("data/match.data.csv", header=TRUE)
+matches1 <- matches
 
 # Se cambian los nombres de la base matches para que la tabla  dinámica tenga nombres fáciles
-names(matches) <- c("Fecha", "Equipo Local", "Goles Local", "Equipo Visitante", "Goles Visitante")
+names(matches) <- c("Fecha", "Equipo.Local", "Goles.Local", "Equipo.Visitante", "Goles.Visitante")#Para el gráfico de barras
+names(matches1) <- c("Fecha", "Equipo Local", "Goles Local", "Equipo Visitante", "Goles Visitante")#Para que la data table sea presentable
 
 ##################
 # USER INTERFACE #
@@ -41,14 +40,15 @@ ui <- fluidPage(
             
             tabItems(
                 
-                # Histograma
+                # Gráfica de barras
                 tabItem(tabName = "Dashboard",
                         fluidRow(
-                            titlePanel(h3("Frecuencia de la cantidad de goles (2010-2020)")), 
-                            
-                            box(title = "Frecuencia para local y visitante",
+                            titlePanel(h3("Cantidad de goles (2010-2020)")), 
+                            selectInput("x", "Seleccione el valor de X",
+                                        choices = c("Goles.Local", "Goles.Visitante")),
+                            box(title = "Goles anotados en partidos en los que el equipo mostrado es visitante",
                                 background="black",
-                                plotlyOutput("plot1", height = 300),
+                                plotlyOutput("plot1", height = 500),
                                 width=10)
                            #plotlyOutput("plot1", height = 250)
                         )
@@ -62,18 +62,17 @@ ui <- fluidPage(
                                 #status="primary",
                                 background="black",solidHeader = TRUE,
                                 img( src = "p3_home.png", 
-                                     height = 250, width = 290)),
+                                     height = 250)),
                             box(title="Probabilidad del visitante",
                                 #status="info", 
                                 background="light-blue",solidHeader = TRUE,
                                 img( src = "p3_away.png", 
-                                     height = 250, width = 290)),
+                                     height = 250)),
                             box(title="Probabilidad conjunta",
                                 #status="info", 
                                 #background="light-blue",solidHeader = TRUE,
                                 img( src = "p3_both.png", 
-                                     height = 250),
-                                width = 8)
+                                     height = 250))
                         )
                 ),
                 
@@ -89,17 +88,17 @@ ui <- fluidPage(
                 # Momios
                 tabItem(tabName = "img",
                         fluidRow(
-                            titlePanel(h3("Escenarios con momios máximos y promedio (2010-2020)")),
+                            titlePanel(h3("Escenarios con momios máximos y promedio")),
                             box(title="Momios máximos",
                                 #status="primary",
                                 background="black",solidHeader = TRUE,
                                 img( src = "g1.png", 
-                                    height = 250, width = 290)),
+                                    height = 250)),
                             box(title="Momios promedio",
                                 #status="info", 
                                 background="light-blue",solidHeader = TRUE,
                                 img( src = "g2.png", 
-                                     height = 250, width = 290))
+                                     height = 250))
                         )
                 )
                 
@@ -120,39 +119,26 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-
-    library(ggplot2)
-    library(plotly)
     
-    #Gráfico de Histograma
+    #Gráfico de barras
     output$plot1 <- renderPlotly({
         
-        p <- ggplot(goals, aes(x=Goles)) + 
+        x<-matches[,input$x]
+        p <- ggplot(matches, aes(x))+
             geom_bar() + 
-            theme_light() + 
+            facet_wrap("Equipo.Visitante")+
+            theme_gray()+
             ylab("Frecuencia") + 
-            facet_wrap(~ Tipo)+
-            theme_gray()
+            xlab(input$x)+
+            ylim(0,80)
         ggplotly(p)
         
         
     })
     
-    # Gráficas de dispersión
-    output$output_plot <- renderPlot({ 
-        
-        ggplot(mtcars, aes(x =  mtcars[,input$a] , y = mtcars[,input$y], 
-                           colour = mtcars[,input$z] )) + 
-            geom_point() +
-            ylab(input$y) +
-            xlab(input$a) + 
-            theme_linedraw() + 
-            facet_grid(input$z)  #selección del grid
-        
-    })   
     
     #Data Table
-    output$data_table <- renderDataTable( {matches}, 
+    output$data_table <- renderDataTable( {matches1}, 
                                           options = list(aLengthMenu = c(5,25,50),
                                                          iDisplayLength = 5)
     )
