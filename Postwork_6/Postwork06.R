@@ -6,7 +6,7 @@
 
 library(dplyr)
 
-df <- read.csv("match.data.csv")
+df <- read.csv("https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_6/match.data.csv", header=T)
 df$date <- as.Date(df$date, format="%Y-%m-%d")
 
 df<-mutate(df,Year.month=format(date,'%Y/%m')) 
@@ -17,7 +17,8 @@ df <- mutate(df, sumagoles=home.score+away.score)
 
 # Obtén el promedio por mes de la suma de goles.
 
-Promedio<- df %>% group_by(Year.month) %>% summarise(gols.month=mean(sumagoles))
+Promedio<- df %>% group_by(Year.month) %>% summarise(gols.month=mean(sumagoles),
+                      Games.month=n())
 
 # Crea la serie de tiempo del promedio por mes de la suma de goles hasta 
 # diciembre de 2019.
