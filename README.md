@@ -19,7 +19,7 @@ En este repositorio se encuentran los resultados y todos los desarrollos del pro
 ### Resultados del proyecto
 - El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
 - El __video explicativo__ del proyecto:
-- La __presentación__ mostrada en el video: 
+- La __presentación__ mostrada en el video: https://www.canva.com/design/DAEkCe7_6hk/4KlcUVIaopJh-fnWHf82lQ/view?utm_content=DAEkCe7_6hk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 - El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj. (O también se puede consultar el pdf del reporte: )
 
 ### Desarrollo del proyecto (Postworks)
