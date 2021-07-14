@@ -14,7 +14,9 @@ library(dplyr)
 library(stringr)
 library(fbRanks)
 
-Files<-c("SP1_1718.csv","SP1_1819.csv","SP1_1920.csv")
+Files<-c('https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1718.csv',
+        'https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1819.csv',
+        'https://raw.githubusercontent.com/gilesitorr/DataScience3_Bloque2/main/Postwork_2/SP1_1920.csv')
 SmallData<-lapply(Files,read.csv)
 SmallData<-lapply(SmallData,function(x){select(x,c('Date',
                                       'HomeTeam','FTHG','AwayTeam','FTAG'))})
