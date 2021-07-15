@@ -21,6 +21,8 @@ En este repositorio se encuentran los resultados y todos los desarrollos del pro
 - La __presentación__ mostrada en el video: https://www.canva.com/design/DAEkCe7_6hk/4KlcUVIaopJh-fnWHf82lQ/view?utm_content=DAEkCe7_6hk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
 - El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj. (O también se puede consultar el pdf del reporte: )
 
+__Nota__: En el __reporte__ está el análisis a detalle de cada código. Están las descripciones, conclusiones, áreas de oportunidad de cada parte del proyecto y algunas propuestas.
+
 ### Desarrollo del proyecto (Postworks)
 A continuación, se encuentran todos los postworks en orden:
  - [`Postwork 1:` Introducción a R y Software ](Postwork_1/Readme.md) 
