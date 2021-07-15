@@ -5,7 +5,6 @@
 
 ### Equipo 2
 El equipo de colaboradores en este trabajo está compuesto por:
-- __Escamilla Zepeda__, Mario
 - __Gómez Barraza__, Karla Daniela
 - __Guevara Moreno__, Fernando
 - __Muñoz Esparza__, José Cruz
