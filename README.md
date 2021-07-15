@@ -18,7 +18,7 @@ En este repositorio se encuentran los resultados y todos los desarrollos del pro
 ### Resultados del proyecto
 - El __dashboard__ del proyecto: https://gilesitorr.shinyapps.io/Postwork8/
 - El __video explicativo__ del proyecto: https://drive.google.com/file/d/1U0fzLWyKUxVsM_hnzplFE9sfzUSpxnz4/view?usp=sharing
-- La __presentación__ mostrada en el video: https://www.canva.com/design/DAEkCe7_6hk/4KlcUVIaopJh-fnWHf82lQ/view?utm_content=DAEkCe7_6hk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+- La __presentación__ mostrada en el video: https://www.canva.com/design/DAEkCe7_6hk/4KlcUVIaopJh-fnWHf82lQ/view?utm_content=DAEkCe7_6hk&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton. (O también se puede consultar el [pdf de la presentación](https://github.com/gilesitorr/DataScience3_Bloque2/blob/d51a7abcea040bf8d80e61abf3233a4c82aad7c4/Proyecto%20Final%20BEDU.pdf))
 - El __reporte__ del proyecto: https://www.overleaf.com/read/yjddsrcsskdj. (O también se puede consultar el [pdf del reporte](https://github.com/gilesitorr/DataScience3_Bloque2/blob/7cfd1932b42298d3dbca5abd301be3345af50d2e/DS3_Bloque2_R%20(1).pdf))
 
 __Nota__: En el __reporte__ está el análisis a detalle de cada código. Están las descripciones, conclusiones, áreas de oportunidad de cada parte del proyecto y algunas propuestas.
